@@ -1,0 +1,42 @@
+$TTL    604800
+@       IN      SOA     okd.gomel.iba.by. ns1.okd.gomel.iba.by. (
+                  6     ; Serial
+             604800     ; Refresh
+              86400     ; Retry
+            2419200     ; Expire
+             604800     ; Negative Cache TTL
+)
+
+; name servers - NS records
+    IN      NS      ns1
+
+; name servers - A records
+ns1.okd.gomel.iba.by.          IN      A       10.224.0.22
+
+; name servers - CNAME records
+nfs.okd.gomel.iba.by.          IN      CNAME       ns1
+
+; name server - CNAME records
+admin.okd.gomel.iba.by.          IN      CNAME     ns1
+
+; OpenShift Container Platform Cluster - A records
+okd4bs.okd.gomel.iba.by.        IN      A      10.224.0.20
+okd4m0.okd.gomel.iba.by.        IN      A      10.224.0.17
+okd4m1.okd.gomel.iba.by.        IN      A      10.224.0.18
+okd4m2.okd.gomel.iba.by.        IN      A      10.224.0.19
+okd4w0.okd.gomel.iba.by.        IN      A      10.224.0.16
+
+; OpenShift internal cluster IPs - A records
+api.okd4.okd.gomel.iba.by.	IN	A	10.224.0.22
+api-int.okd4.okd.gomel.iba.by.	IN	A	10.224.0.22
+*.apps.okd4.okd.gomel.iba.by.	IN	A	10.224.0.22
+etcd-0.okd4.okd.gomel.iba.by.	IN	A 	10.224.0.17
+etcd-1.okd4.okd.gomel.iba.by.	IN	A 	10.224.0.18
+etcd-2.okd4.okd.gomel.iba.by.	IN	A	10.224.0.19
+console-openshift-console.apps.okd4.okd.gomel.iba.by.     IN 	A 	10.224.0.22
+oauth-openshift.apps.okd4.okd.gomel.iba.by.     IN 	A 	10.224.0.22
+
+; OpenShift internal cluster IPs - SRV records
+_etcd-server-ssl._tcp.okd4.okd.gomel.iba.by.	86400 	IN	SRV 	0	10	2380	etcd-0.okd4
+_etcd-server-ssl._tcp.okd4.okd.gomel.iba.by.	86400 	IN	SRV 	0	10	2380	etcd-1.okd4
+_etcd-server-ssl._tcp.okd4.okd.gomel.iba.by.	86400 	IN	SRV 	0	10	2380	etcd-2.okd4

@@ -1,0 +1,3 @@
+---
+- name: reload nfs
+  command: 'systemctl start nfs-server && systemctl start rpcbind'

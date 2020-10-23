@@ -1,0 +1,35 @@
+- name: Install nginx
+  yum:
+    pkg: nginx
+    state: latest
+- name: Set nginx config
+  copy:
+    src: nginx.conf
+    dest: /etc/nginx/nginx.conf
+- name: Start & enable nginx
+  systemd:
+    service: nginx
+    enabled: yes
+    state: started
+- name: Add alternative HTTP service to firewalld
+  copy:
+    src: http-alternative.xml
+    dest: /usr/lib/firewalld/services/http-alternative.xml
+- name: Reload FirewallD
+  systemd:
+    service: firewalld
+    state: reloaded
+- name: Allow okd subnet to use alternative HTTP
+  firewalld:
+    rich_rule: rule family=ipv4 source address=10.224.0.0/19 service name=http-alternative accept
+    zone: public
+    permanent: yes
+    immediate: yes
+    state: enabled
+- name: Allow ibagomel to use alternative HTTP
+  firewalld:
+    rich_rule: rule family=ipv4 source address=172.27.0.0/16 service name=http-alternative accept
+    zone: public
+    permanent: yes
+    immediate: yes
+    state: enabled

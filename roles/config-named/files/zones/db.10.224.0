@@ -1,0 +1,20 @@
+$TTL    604800
+@       IN      SOA     ns1.okd.gomel.iba.by. admin.okd.gomel.iba.by. (
+                  6     ; Serial
+             604800     ; Refresh
+              86400     ; Retry
+            2419200     ; Expire
+             604800     ; Negative Cache TTL
+)
+; name servers - NS records
+    IN      NS      ns1.okd.gomel.iba.by.
+; name servers - PTR records
+22    IN    PTR    ns1.okd.gomel.iba.by.
+; admin server - PTR records
+22    IN    PTR    admin.okd.gomel.iba.by.
+; OpenShift Container Platform Cluster - PTR records
+20    IN    PTR    okd4bs.okd.gomel.iba.by.
+17    IN    PTR    okd4m0.okd.gomel.iba.by.
+18    IN    PTR    okd4m1.okd.gomel.iba.by.
+19    IN    PTR    okd4m2.okd.gomel.iba.by.
+16    IN    PTR    okd4m2.okd.gomel.iba.by.

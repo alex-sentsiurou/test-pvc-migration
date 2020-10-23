@@ -1,0 +1,48 @@
+- name: Install HAProxy
+  yum:
+    pkg: haproxy
+    state: latest
+- name: Set HAProxy config
+  copy:
+    src: haproxy.cfg
+    dest: /etc/haproxy/haproxy.cfg
+- name: Allow HAProxy to connect on any port
+  seboolean:
+    name: haproxy_connect_any
+    persistent: yes
+    state: yes
+- name: Enable & start HAProxy
+  systemd:
+    service: haproxy
+    state: restarted
+    enabled: yes
+- name: Create FirewallD service for all required ports
+  copy:
+    src: okd-lb.xml
+    dest: /usr/lib/firewalld/services/
+- name: Reload FirewallD
+  systemd:
+    service: firewalld
+    state: reloaded
+- name: Allow okd subnet to use required ports
+  firewalld:
+    rich_rule: rule family=ipv4 source address=10.224.0.0/19 service name=okd-lb accept
+    zone: public
+    permanent: yes
+    immediate: yes
+    state: enabled
+- name: Allow ibagomel internal to use required ports
+  firewalld:
+    rich_rule: rule family=ipv4 source address=172.27.0.0/16 service name=okd-lb accept
+    zone: public
+    permanent: yes
+    immediate: yes
+    state: enabled
+- name: Allow ibagomel exernal to use required ports
+  firewalld:
+    rich_rule: rule family=ipv4 source address=172.28.0.0/16 service name=okd-lb accept
+    zone: public
+    permanent: yes
+    immediate: yes
+    state: enabled
+  

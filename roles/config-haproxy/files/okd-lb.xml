@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>okd-lb</short>
+  <description>Open all port on HA proxy</description>
+  <port protocol="tcp" port="80"/>
+  <port protocol="tcp" port="443"/>
+  <port protocol="tcp" port="6443"/>
+  <port protocol="tcp" port="8080"/>
+  <port protocol="tcp" port="9000"/>
+  <port protocol="tcp" port="10000"/>
+  <port protocol="tcp" port="10002"/>
+  <port protocol="tcp" port="22623"/>
+  <port protocol="tcp" port="31179"/>
+  <port protocol="tcp" port="31412"/>
+  <port protocol="tcp" port="31780"/>
+  <port protocol="tcp" port="31851"/>
+  <port protocol="tcp" port="32567"/>
+  <port protocol="tcp" port="30203"/>
+  <port protocol="tcp" port="30823"/>
+  <port protocol="tcp" port="32149"/>
+  <port protocol="tcp" port="31538"/>
+  <port protocol="tcp" port="31531"/>
+  <port protocol="tcp" port="9446"/>
+  <port protocol="tcp" port="52181"/>
+  <port protocol="tcp" port="52888"/>
+  <port protocol="tcp" port="53888"/>
+  <port protocol="tcp" port="59092"/>
+  <port protocol="tcp" port="58983"/>
+  <port protocol="tcp" port="2222"/>
+  <port protocol="tcp" port="6379"/>
+</service>
