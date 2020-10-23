@@ -1,6 +1,6 @@
 language: python
 install:
   - pip install ansible-lint
-  - ansible-lint --version
+  - ansible-lint -v -T
 script:
-  - ansible-lint roles/config-haproxy
+  - ansible-lint roles/config-haproxy roles/config-named roles/generate-ignition-config/tasks/*.yml
