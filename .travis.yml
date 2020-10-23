@@ -3,4 +3,4 @@ install:
   - pip install ansible-lint
   - ansible-lint -v -T
 script:
-  - ansible-lint roles/config-haproxy roles/config-named roles/generate-ignition-config/tasks/*.yml -x 201,305,504,208,303,701,601,206,602,403,301,502,306 -v
+  - ansible-lint *.yml -x 201 -v
