@@ -3,4 +3,4 @@ install:
   - pip install ansible-lint
   - ansible-lint --version
 script:
-  - ansible-lint config-haproxy
+  - ansible-lint roles/config-haproxy
