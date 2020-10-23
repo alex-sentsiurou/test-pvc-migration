@@ -3,4 +3,4 @@ install:
   - pip install ansible-lint
   - ansible-lint -v -T
 script:
-  - ansible-lint *.yml -x 201 -v
+  - ansible-lint -x 201 -v
