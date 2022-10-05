@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<service>
-  <short>http-alternative</short>
-  <description>Alternative port for Nginx server (80 is already binded)</description>
-  <port protocol="tcp" port="8080"/>
-</service> 

@@ -1,0 +1,52 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins
+  namespace: jenkins
+spec:
+  selector:
+    matchLabels:
+      app: jenkins
+  replicas: 1
+  revisionHistoryLimit: 10
+  template:
+    metadata:
+      labels:
+        app: jenkins
+    spec:
+      securityContext:
+        fsGroup: 1000 
+        runAsUser: 1000
+      containers:
+      - image: jenkins/jenkins:lts-jdk11
+        name: jenkins
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        - containerPort: 50000
+          protocol: TCP
+        volumeMounts:
+          - name: gcp-euwe3-jenkins-devops-gcd
+            mountPath: /var/jenkins_home
+      volumes:
+        - name: gcp-euwe3-jenkins-devops-gcd
+          persistentVolumeClaim:
+            claimName: jenkins-pvc
+#        - name: gcp-euwe3-jenkins-devops-gcd
+#          gcePersistentDisk:
+#            pdName: gcp-euwe3-jenkins-devops-gcd
+#            fsType: ext4
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: jenkins-pvc
+  namespace: jenkins
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+---

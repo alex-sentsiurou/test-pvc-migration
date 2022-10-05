@@ -1,5 +1,0 @@
----
-nfs_exports: ["/var/nfsshare *(rw,sync,root_squash)"]
-
-nfs_rpcbind_state: started
-nfs_rpcbind_enabled: true
